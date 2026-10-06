@@ -20,6 +20,17 @@ kotlin {
     }
 }
 
+tasks.withType<AbstractTestTask> {
+    testLogging {
+        events("passed", "failed", "skipped")
+    }
+    afterSuite(KotlinClosure2<TestDescriptor, TestResult, Unit>({ descriptor, result ->
+        if (descriptor.parent == null) {
+            println("${result.testCount} tests: ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped")
+        }
+    }))
+}
+
 android {
     namespace = "uk.co.satoama.satsumaimo"
     compileSdk = 35
