@@ -2,7 +2,7 @@ import org.gradle.api.publish.maven.tasks.AbstractPublishToMaven
 plugins {
     kotlin("multiplatform") version "2.1.21"
     id("com.android.library") version "8.10.0"
-    id("maven-publish")
+    id("com.vanniktech.maven.publish") version "0.34.0"
 }
 group = "io.github.yosato"
 version = "0.1.0"
@@ -38,6 +38,34 @@ tasks.withType<AbstractTestTask> {
 }
 tasks.withType<AbstractPublishToMaven> {
     dependsOn("allTests")
+}
+mavenPublishing {
+    publishToMavenCentral()
+    pom {
+        name.set("satsumaimo")
+        description.set("Japanese orthography normalisation")
+        inceptionYear.set("2026")
+        url.set("https://github.com/yosato/satsumaimo")
+        licenses {
+            license {
+                name.set("The Apache License, Version 2.0")
+                url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                distribution.set("repo")
+            }
+        }
+        developers {
+            developer {
+                id.set("yosato")
+                name.set("Yo Sato")
+                url.set("https://github.com/yosato")
+            }
+        }
+        scm {
+            url.set("https://github.com/yosato/satsumaimo")
+            connection.set("scm:git:git://github.com/yosato/satsumaimo.git")
+            developerConnection.set("scm:git:ssh://git@github.com/yosato/satsumaimo.git")
+        }
+    }
 }
 
 android {
