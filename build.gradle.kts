@@ -1,10 +1,16 @@
+import org.gradle.api.publish.maven.tasks.AbstractPublishToMaven
 plugins {
     kotlin("multiplatform") version "2.1.21"
     id("com.android.library") version "8.10.0"
+    id("maven-publish")
 }
+group = "io.github.yosato"
+version = "0.1.0"
 
 kotlin {
-    androidTarget()
+    androidTarget {
+        publishLibraryVariants("release")
+    }
     jvm()
     iosArm64()
     iosSimulatorArm64()
@@ -29,6 +35,9 @@ tasks.withType<AbstractTestTask> {
             println("${result.testCount} tests: ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped")
         }
     }))
+}
+tasks.withType<AbstractPublishToMaven> {
+    dependsOn("allTests")
 }
 
 android {
