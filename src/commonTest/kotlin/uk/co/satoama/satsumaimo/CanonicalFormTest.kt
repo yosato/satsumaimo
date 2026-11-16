@@ -1,16 +1,10 @@
 package uk.co.satoama.satsumaimo
 
-import kotlinx.io.buffered
-import kotlinx.io.files.Path
-import kotlinx.io.files.SystemFileSystem
-import kotlinx.io.readString
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-private fun load_test_dictionary(): Dictionary {
-    val text = SystemFileSystem.source(Path("testdata/test_dictionary.json")).buffered().use { it.readString() }
-    return Dictionary.from_json(text)
-}
+private fun load_test_dictionary(): Normaliser =
+    Normaliser.from_json("""{"薩摩イモ": ["薩摩芋", "さつまいも", "サツマイモ", "さつま芋", "薩摩いも", "薩摩イモ"]}""")
 
 class CanonicalFormTest {
     private val dict = load_test_dictionary()
@@ -68,5 +62,25 @@ class CanonicalFormTest {
     @Test
     fun width_and_katakana_fallback_combine() {
         assertEquals("ヌペラポA", dict.canonical_form("ぬぺらぽＡ"))
+    }
+
+    @Test
+    fun surrounding_spaces_are_trimmed() {
+        assertEquals("薩摩イモ", dict.canonical_form(" サツマイモ "))
+    }
+
+    @Test
+    fun surrounding_fullwidth_spaces_are_trimmed() {
+        assertEquals("薩摩イモ", dict.canonical_form("　サツマイモ　"))
+    }
+
+    @Test
+    fun surrounding_tab_and_newline_are_trimmed() {
+        assertEquals("薩摩イモ", dict.canonical_form("\tサツマイモ\n"))
+    }
+
+    @Test
+    fun internal_space_runs_collapse_to_one_space() {
+        assertEquals("ヌペ ラポ", dict.canonical_form("ぬぺ  　らぽ"))
     }
 }
