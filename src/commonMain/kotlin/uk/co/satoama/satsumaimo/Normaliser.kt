@@ -3,17 +3,18 @@ package uk.co.satoama.satsumaimo
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-class Dictionary(entries: Map<String, List<String>>) {
+class Normaliser(entries: Map<String, List<String>> = defaultEntries) {
     private val canonicalByVariant: Map<String, String> =
         entries.flatMap { (canonical, variants) -> variants.map { it to canonical } }.toMap()
 
     fun canonical_form(text: String): String {
         val halfwidth = CharVariants.fullwidth_to_halfwidth_ascii(text)
-        return canonicalByVariant[halfwidth] ?: CharVariants.hiragana_to_katakana(halfwidth)
+        val spaced = CharVariants.collapse_whitespace(halfwidth)
+        return canonicalByVariant[spaced] ?: CharVariants.hiragana_to_katakana(spaced)
     }
 
     companion object {
-        fun from_json(text: String): Dictionary =
-            Dictionary(Json.decodeFromString<Map<String, List<String>>>(text))
+        fun from_json(text: String): Normaliser =
+            Normaliser(Json.decodeFromString<Map<String, List<String>>>(text))
     }
 }
