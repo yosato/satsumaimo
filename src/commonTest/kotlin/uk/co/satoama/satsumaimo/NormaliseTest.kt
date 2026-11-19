@@ -6,8 +6,8 @@ import kotlin.test.assertEquals
 class NormaliseTest {
     private val normaliser = Normaliser()
     @Test
-    fun default_dictionary_maps_variant_to_canonical() {
-        assertEquals("薩摩イモ", normaliser.canonical_form("さつまいも"))
+    fun default_has_no_dictionary_so_kana_falls_back_to_katakana() {
+        assertEquals("サツマイモ", normaliser.canonical_form("さつまいも"))
     }
 
     @Test

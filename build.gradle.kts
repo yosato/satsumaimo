@@ -41,6 +41,7 @@ tasks.withType<AbstractPublishToMaven> {
 }
 mavenPublishing {
     publishToMavenCentral()
+    signAllPublications()
     pom {
         name.set("satsumaimo")
         description.set("Japanese orthography normalisation")

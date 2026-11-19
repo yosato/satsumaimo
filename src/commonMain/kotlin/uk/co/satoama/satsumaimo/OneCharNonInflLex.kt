@@ -1,0 +1,41 @@
+package uk.co.satoama.satsumaimo
+
+object OneCharNonInflLex {
+    val lexemes: List<Lexeme> = listOf(
+        NonInflLexeme("て:hand", "て", "普名", listOf("て", "手")),
+        NonInflLexeme("め:eye", "め", "普名", listOf("め", "目")),
+        NonInflLexeme("め:bud", "め", "普名", listOf("め", "芽")),
+        NonInflLexeme("は:tooth", "は", "普名", listOf("は", "歯")),
+        NonInflLexeme("は:leaf", "は", "普名", listOf("は", "葉")),
+        NonInflLexeme("き:tree", "き", "普名", listOf("き", "木")),
+        NonInflLexeme("き:spirit", "き", "普名", listOf("き", "気")),
+        NonInflLexeme("ひ:sun", "ひ", "普名", listOf("ひ", "日")),
+        NonInflLexeme("ひ:fire", "ひ", "普名", listOf("ひ", "火")),
+        NonInflLexeme("い:stomach", "い", "普名", listOf("い", "胃")),
+        NonInflLexeme("え:picture", "え", "普名", listOf("え", "絵")),
+        NonInflLexeme("え:handle", "え", "普名", listOf("え", "柄")),
+        NonInflLexeme("こ:child", "こ", "普名", listOf("こ", "子")),
+        NonInflLexeme("み:body", "み", "普名", listOf("み", "身")),
+        NonInflLexeme("み:fruit", "み", "普名", listOf("み", "実")),
+        NonInflLexeme("ね:root", "ね", "普名", listOf("ね", "根")),
+        NonInflLexeme("ね:sound", "ね", "普名", listOf("ね", "音")),
+        NonInflLexeme("ね:price", "ね", "普名", listOf("ね", "値")),
+        NonInflLexeme("な:name", "な", "普名", listOf("な", "名")),
+        NonInflLexeme("な:greens", "な", "普名", listOf("な", "菜")),
+        NonInflLexeme("ち:blood", "ち", "普名", listOf("ち", "血")),
+        NonInflLexeme("ち:earth", "ち", "普名", listOf("ち", "地")),
+        NonInflLexeme("す:nest", "す", "普名", listOf("す", "巣")),
+        NonInflLexeme("す:vinegar", "す", "普名", listOf("す", "酢")),
+        NonInflLexeme("ほ:ear", "ほ", "普名", listOf("ほ", "穂")),
+        NonInflLexeme("ほ:sail", "ほ", "普名", listOf("ほ", "帆")),
+        NonInflLexeme("ゆ:hot_water", "ゆ", "普名", listOf("ゆ", "湯")),
+        NonInflLexeme("よ:world", "よ", "普名", listOf("よ", "世")),
+        NonInflLexeme("の:field", "の", "普名", listOf("の", "野")),
+        NonInflLexeme("か:mosquito", "か", "普名", listOf("か", "蚊")),
+        NonInflLexeme("に:two", "に", "数", listOf("に", "二")),
+        NonInflLexeme("ま:space", "ま", "非自名", listOf("ま", "間")),
+        NonInflLexeme("ま:truth", "ま", "非自名", listOf("ま", "真")),
+        NonInflLexeme("ま:demon", "ま", "非自名", listOf("ま", "魔")),
+        NonInflLexeme("け:hair", "け", "普名", listOf("け", "毛"))
+    )
+}
